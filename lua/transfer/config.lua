@@ -4,43 +4,12 @@ M.defaults = {
   -- deployment config template: can be a string, a function or a table of lines
   config_template = [[
 return {
-  ["server1"] = {
-    host = "server1",
-    mappings = {
-      {
-        ["local"] = "domains/example.com",
-        ["remote"] = "/var/www/example.com",
-      },
-    },
-    -- excludedPaths = {
-    --   "src", -- local path relative to project root
-    -- },
-  },
+	-- port = 1234,
+	ip = "127.0.0.1",
+	user = "martins3",
+	location = "/home/smartx",
 }
 ]],
-  close_diffview_mapping = "<leader>b", -- buffer related mapping to close diffview, set to nil to disable mapping
-  upload_rsync_params = {
-    "-rlzi",
-    "--delete",
-    "--checksum",
-    "--exclude",
-    ".git",
-    "--exclude",
-    ".idea",
-    "--exclude",
-    ".DS_Store",
-    "--exclude",
-    ".nvim",
-    "--exclude",
-    "*.pyc",
-  },
-  download_rsync_params = {
-    "-rlzi",
-    "--delete",
-    "--checksum",
-    "--exclude",
-    ".git",
-  },
 }
 
 M.options = {}
