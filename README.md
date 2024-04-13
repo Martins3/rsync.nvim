@@ -18,3 +18,9 @@ Work in progress 🔧 .
 - [KenN7/vim-arsync](https://github.com/KenN7/vim-arsync)
 - [OscarCreator/rsync.nvim](https://github.com/OscarCreator/rsync.nvim)
 - [coffebar/transfer.nvim](https://github.com/coffebar/transfer.nvim)
+
+## 问题
+1. 出现错误的时候，没有报错
+3. 切换配置文件之后，如何刷新?
+    - 在 enable 的过程中，重新加载一次
+    - 如何使用 status line 来通知 ?
