@@ -4,7 +4,7 @@ function M.sync_dir(port, remote_location)
 	local root = vim.fn.system({ "git", "rev-parse", "--show-toplevel" }, vim.fn.expand("%:p"))
 	root = root:sub(1, -2)
 
-	local cmd = "rsync --delete -avzh --exclude=.git/ --filter='dir-merge,- .gitignore' "
+	local cmd = "rsync -avzh --exclude=.git/ --filter='dir-merge,- .gitignore' "
 	if port ~= nil then
 		cmd = cmd .. "--rsh='ssh -p" .. port .. "'"
 	end
