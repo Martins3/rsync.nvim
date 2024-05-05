@@ -32,3 +32,8 @@ Work in progress 🔧 .
      - https://github.com/jamestthompson3/nvim-remote-containers
      - https://github.com/OscarCreator/rsync.nvim
      - 但是 rsync 时间戳似乎维护的有问题，经常遇到这个问题: make: warning: Clock skew detected. Your build may be incomplete.
+
+2. 将这两个 option 变为 option
+
+	-- 忽视掉 .git --exclude=.git/
+	-- 将 source 不存在的文件在 target 侧删除 --delete
