@@ -37,3 +37,15 @@ Work in progress 🔧 .
 
 	-- 忽视掉 .git --exclude=.git/
 	-- 将 source 不存在的文件在 target 侧删除 --delete
+
+3. 手动刷新配置文件
+
+4. 制作更多的 template 吧
+```txt
+return {
+	-- port = 1234,
+	ip = "10.0.57.0",
+	user = "root",
+	location = "/root",
+}
+```
