@@ -5,9 +5,9 @@ M.defaults = {
   config_template = [[
 return {
 	-- port = 1234,
-	ip = "127.0.0.1",
+	ip = "10.0.1.1",
 	user = "martins3",
-	location = "/home/smartx",
+	location = "/home/martins3",
 }
 ]],
 }
