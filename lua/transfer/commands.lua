@@ -31,12 +31,8 @@ local function load_config()
 	if deployment_conf == nil then
 		return
 	end
-	vim.print(deployment_conf)
-
 	port = deployment_conf.port
 	location = deployment_conf.user .. "@" .. deployment_conf.ip .. ":" .. deployment_conf.location
-
-	vim.print(deployment_conf)
 	vim.print(location)
 end
 
