@@ -4,10 +4,9 @@ M.defaults = {
   -- deployment config template: can be a string, a function or a table of lines
   config_template = [[
 return {
-	-- port = 1234,
-	ip = "127.0.0.1",
-	user = "martins3",
-	location = "/home/smartx",
+	ip = "10.0.1.0",
+	user = "root",
+	location = "/root",
 }
 ]],
 }
