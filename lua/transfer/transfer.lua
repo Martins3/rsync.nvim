@@ -25,6 +25,11 @@ function M.sync_dir(port, remote_location)
 				vim.notify(table.concat(stderr, "\n"), vim.log.levels.ERROR)
 				return
 			end
+			-- Show notification when rsync completes successfully
+			vim.notify("rsync done 😸", vim.log.levels.INFO, {
+				title = "Transfer.nvim",
+				timeout = 2000,
+			})
 
 		end,
 	})
