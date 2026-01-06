@@ -1,12 +1,17 @@
 local M = {}
 
-function M.sync_dir(port, remote_location)
+function M.sync_dir(config, remote_location)
 	local root = vim.fn.system({ "git", "rev-parse", "--show-toplevel" }, vim.fn.expand("%:p"))
 	root = root:sub(1, -2)
 
 	local cmd = "rsync -avzh  --filter='dir-merge,- .gitignore' "
-	if port ~= nil then
-		cmd = cmd .. "--rsh='ssh -p" .. port .. "'"
+	if config.port ~= nil then
+		cmd = cmd .. "--rsh='ssh -p" .. config.port .. "' "
+	end
+
+	-- Add --exclude=.git/ if ignore_git is true
+	if config.ignore_git == true then
+		cmd = cmd .. "--exclude=.git/ "
 	end
 
 	cmd = cmd .. " " .. root .. " " .. remote_location

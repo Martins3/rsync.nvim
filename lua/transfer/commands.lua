@@ -2,7 +2,7 @@ local M = {}
 
 M.enable = false
 
-local port
+local config_data = {}
 local location
 
 M.config_loaded = false
@@ -31,7 +31,7 @@ local function load_config()
 	if deployment_conf == nil then
 		return
 	end
-	port = deployment_conf.port
+	config_data = deployment_conf
 	location = deployment_conf.user .. "@" .. deployment_conf.ip .. ":" .. deployment_conf.location
 	vim.print(location)
 end
@@ -41,7 +41,7 @@ local function create_autocmd()
 	vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 		callback = function()
 			if M.enable == true then
-				require("transfer.transfer").sync_dir(port, location)
+				require("transfer.transfer").sync_dir(config_data, location)
 			end
 		end,
 		group = augroup,

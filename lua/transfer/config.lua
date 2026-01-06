@@ -7,6 +7,7 @@ return {
 	ip = "10.0.1.0",
 	user = "root",
 	location = "/root",
+	ignore_git = false,
 }
 ]],
 }
