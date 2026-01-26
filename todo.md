@@ -20,3 +20,5 @@
 
 6. 将事件修改为 focus change 可以吗?
     - 这样其实更加精确的，当离开了，就是要到其他的 server 端做事了。
+
+7. https://github.com/amitds1997/remote-nvim.nvim 才是真正的解决方案吗?
