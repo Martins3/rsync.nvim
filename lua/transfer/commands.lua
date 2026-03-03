@@ -38,7 +38,7 @@ end
 
 local function create_autocmd()
 	local augroup = vim.api.nvim_create_augroup("TransferNvim", { clear = true })
-	vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+	vim.api.nvim_create_autocmd({ "BufWritePost", "FocusLost" }, {
 		callback = function()
 			if M.enable == true then
 				require("transfer.transfer").sync_dir(config_data, location)
