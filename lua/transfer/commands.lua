@@ -89,6 +89,18 @@ M.setup = function()
 			M.enable = false
 		end
 	end, { nargs = 0 })
+
+	vim.api.nvim_create_user_command("TransferShow", function()
+		load_config()
+		if config_data.ip == nil then
+			return
+		end
+		local cmd = require("transfer.transfer").build_rsync_cmd(config_data, location)
+		vim.notify(cmd, vim.log.levels.INFO, {
+			title = "Transfer.nvim - rsync command",
+			timeout = 10000,
+		})
+	end, { nargs = 0 })
 end
 
 return M

@@ -1,6 +1,6 @@
 local M = {}
 
-function M.sync_dir(config, remote_location)
+function M.build_rsync_cmd(config, remote_location)
 	local root = vim.fn.system({ "git", "rev-parse", "--show-toplevel" }, vim.fn.expand("%:p"))
 	root = root:sub(1, -2)
 
@@ -15,7 +15,11 @@ function M.sync_dir(config, remote_location)
 	end
 
 	cmd = cmd .. " " .. root .. " " .. remote_location
-	-- vim.print(cmd)
+	return cmd
+end
+
+function M.sync_dir(config, remote_location)
+	local cmd = M.build_rsync_cmd(config, remote_location)
 
 	local stderr = {}
 	vim.fn.jobstart(cmd, {
