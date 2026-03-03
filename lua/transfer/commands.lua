@@ -48,6 +48,13 @@ local function create_autocmd()
 	})
 end
 
+M.get_status = function()
+	if M.enable == false then
+		return "disabled"
+	end
+	return require("transfer.transfer").sync_status
+end
+
 M.setup = function()
 	create_autocmd()
 

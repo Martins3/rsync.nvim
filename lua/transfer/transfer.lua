@@ -1,5 +1,12 @@
 local M = {}
 
+-- Sync status: "idle", "syncing", "success", "error"
+M.sync_status = "idle"
+
+function M.get_status()
+  return M.sync_status
+end
+
 function M.build_rsync_cmd(config, remote_location)
 	local root = vim.fn.system({ "git", "rev-parse", "--show-toplevel" }, vim.fn.expand("%:p"))
 	root = root:sub(1, -2)
@@ -21,8 +28,9 @@ end
 function M.sync_dir(config, remote_location)
 	local cmd = M.build_rsync_cmd(config, remote_location)
 
+	M.sync_status = "syncing"
 	local stderr = {}
-	vim.fn.jobstart(cmd, {
+	local job_id = vim.fn.jobstart(cmd, {
 		on_stderr = function(_, data, _)
 			if data == nil or #data == 0 then
 				return
@@ -31,17 +39,22 @@ function M.sync_dir(config, remote_location)
 		end,
 		on_exit = function(_, code, _)
 			if code ~= 0 then
+				M.sync_status = "error"
 				vim.notify(table.concat(stderr, "\n"), vim.log.levels.ERROR)
 				return
 			end
 			-- Show notification when rsync completes successfully
+			M.sync_status = "success"
 			vim.notify("rsync done 😸", vim.log.levels.INFO, {
 				title = "Transfer.nvim",
 				timeout = 2000,
 			})
-
 		end,
 	})
+
+	if job_id <= 0 then
+		M.sync_status = "error"
+	end
 end
 
 return M

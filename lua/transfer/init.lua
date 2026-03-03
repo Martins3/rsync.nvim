@@ -7,4 +7,9 @@ transfer.setup = function(opts)
   commands.setup()
 end
 
+-- Export status function for statusline integration
+transfer.get_status = function()
+  return commands.get_status()
+end
+
 return transfer
